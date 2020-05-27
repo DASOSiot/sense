@@ -8,20 +8,24 @@ import pandas as pd
 # TODO: Replace "vid-000" with argument VID
 #
 # LOG: Fix, Global
-prefix = time.strftime("%Y-%m-%d-")
+prefix = time.strftime("%Y-%m-")
 path = "/var/log/dasos/sense/"
 vid = "vid-000"
 
 # LOG: Fix, Sense
-log_s = "cron-sense.csv"
-ps = "/var/log/dasos/sense/" + vid + "/" + prefix + log_s
+# SL = Sense Log
+sl = "cron-sense.csv"
+# SP = Sense Path
+sp = "/var/log/dasos/sense/" + vid + "/" + prefix + sl
 
 # LOG: Fix, Pulse
-log_p = "cron-pulse.csv"
-pp = "/var/log/dasos/sense/" + vid + "/" + prefix + log_p
+# PL = Pulse Log
+pl = "cron-sense.csv"
+# SP = Pulse Path
+pp = "/var/log/dasos/sense/" + vid + "/" + prefix + sl
 
 # DATAFRAME: Pulse Log. Read, Write, Close.
-pulse = pd.read_csv(log_s)
+pulse = pd.read_csv(sp)
 
 # TODO: Replace "15" with argument PULSE
 #
@@ -54,7 +58,6 @@ csv = f"{p_time},{p_mean},{p_std},{p_min},{p_max},{p_count}" # String Compositio
 print("Record =", csv)
 
 # DATAFRAME: Pulse Log. Read, Write, Close.
-pulse = pd.read_csv(log_p)
 with open(pp, "a") as log: # Open the file in append ('a')
     log.write("\n") # Append Line
     log.write(csv) # Append Record
