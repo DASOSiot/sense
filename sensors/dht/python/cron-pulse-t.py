@@ -7,6 +7,8 @@ import pandas as pd
 
 # ARGUMENTS
 vid = "vid-000" # TODO: Replace with argument VID
+#cycle = 15 # Minutes
+print ("Variable ID =",vid)
 
 # LOG: Fix
 log_base = "/var/log/dasos/sense/" # Absolute Folder
@@ -15,6 +17,8 @@ sl = "cron-sense.csv" # SL = Sense Log Filename
 pl = "cron-pulse.csv" # PL = Pulse Log Filename
 sp = log_base + vid + "/" + log_prefix + sl # SP = Sense Path
 pp = log_base + vid + "/" + log_prefix + pl # PP = Pulse Path
+print (sp)
+print (pp)
 
 # DATAFRAME: Pulse Log. Read, Write, Close.
 pulse = pd.read_csv(sp)
