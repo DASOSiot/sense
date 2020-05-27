@@ -6,7 +6,7 @@ import time
 import pandas as pd
 
 # ARGUMENTS
-vid = "vid-000" # TODO: Replace "vid-000" with argument VID
+vid = "vid-001" # TODO: Replace "vid-000" with argument VID
 
 # LOG: Fix, Global
 log_base = "/var/log/dasos/sense/" # Absolute Folder
