@@ -35,7 +35,7 @@ pre = time.strftime("%Y-%m-%d-")
 file = "cron-sense.csv"
 # LOG: Fix, Variable
 vid_t = "vid-000"
-path_t = "/var/log/dasos/sense/" + vid + "/" + pre + file
+path_t = "/var/log/dasos/sense/" + vid_t + "/" + pre + file
 print ("Path =", path_t)
 with open(path_t, "a") as log: # Open the file in append ('a')
     log.write("\n") # Append Line
@@ -55,7 +55,7 @@ pre = time.strftime("%Y-%m-%d-")
 file = "cron-sense.csv"
 # LOG: Fix, Variable
 vid_h = "vid-001"
-path_h = "/var/log/dasos/sense/" + vid + "/" + pre + file
+path_h = "/var/log/dasos/sense/" + vid_h + "/" + pre + file
 print ("Path =", path_h)
 with open(path_h, "a") as log: # Open the file in append ('a')
     log.write("\n") # LOG: Write. Append Line
