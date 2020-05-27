@@ -26,17 +26,21 @@ print("Value =", v_humi, "%RH")
 csv_temp = f"{t},{v_temp}" # String Composition
 print("Temperature Record =", csv_temp)
 
-# RECORD: Humidity CSV
-csv_humi = f"{t},{v_humi}" # String Composition
-print("Humidity Record =", csv_humi)
-
-# SENSE: Write Temperature CSV
+# SENSE: Write Temperature CSV Record
+# TODO: Replace "vid-000" with argument VID
 with open("/var/log/dasos/sense/vid-000/cron-sense.csv", "a") as log: # Open the file in append ('a')
     log.write("\n") # Append Line
     log.write(csv_temp) # Append Record
     log.close() # LOG: Close
 
-# SENSE: Write Humidity CSV
+# RECORD: Humidity CSV
+csv_humi = f"{t},{v_humi}" # String Composition
+print("Humidity Record =", csv_humi)
+
+# SENSE: Write Humidity CSV Record
+#
+# TODO: Replace "vid-001" with argument VID
+#
 with open("/var/log/dasos/sense/vid-001/cron-sense.csv", "a") as log: # Open the file in append ('a')
     log.write("\n") # Append Line
     log.write(csv_humi) # Append Record

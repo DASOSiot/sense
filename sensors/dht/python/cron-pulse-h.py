@@ -4,11 +4,16 @@
 import pandas as pd
 
 # DATAFRAME: Read File
-# TODO: Replace VID with Argument
-#df = pd.read_csv("/var/log/dasos/sense/(VID)/cron-sense.csv")
-df = pd.read_csv("/var/log/dasos/sense/vid-001/cron-sense.csv")
-# DATAFRAME: Tail Data Set
-pulse = df.tail(15)
+#
+# TODO: Replace "vid-000" with argument VID
+#
+pulse = pd.read_csv("/var/log/dasos/sense/vid-001/cron-sense.csv")
+
+# DATAFRAME: Tail Data
+# TODO: Replace "15" with argument PULSE
+pulse = pulse.tail(15)
+# DATAFRAME: Columns Labels
+pulse.columns = ['t', 'v']
 
 # PULSE: Variables
 # Pulse TIME
@@ -34,7 +39,10 @@ print("Max =", p_max)
 csv = f"{p_time},{p_mean},{p_std},{p_min},{p_max},{p_count}" # String Composition
 print("Record =", csv)
 
-# PULSE: Open, Write, Close
+# PULSE: Write
+#
+# TODO: Replace "vid-000" with argument VID
+#
 with open("/var/log/dasos/sense/vid-001/cron-pulse.csv", "a") as log: # Open the file in append ('a')
     log.write("\n") # Append Line
     log.write(csv) # Append Record
