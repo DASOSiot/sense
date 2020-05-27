@@ -1,49 +1,61 @@
 #!/usr/bin/env python3
 
-# IMPORT: Dependencies
+# IMPORT
+import sys
+import time
 import pandas as pd
 
-# DATAFRAME: Read File
-#
 # TODO: Replace "vid-000" with argument VID
 #
-pulse = pd.read_csv("/var/log/dasos/sense/vid-000/cron-sense.csv")
+# LOG: Fix, Global
+prefix = time.strftime("%Y-%m-%d-")
+path = "/var/log/dasos/sense/"
+vid = "vid-000"
 
-# DATAFRAME: Tail Data
+# LOG: Fix, Sense
+log_s = "cron-sense.csv"
+ps = "/var/log/dasos/sense/" + vid + "/" + prefix + log_s
+
+# LOG: Fix, Pulse
+log_p = "cron-pulse.csv"
+pp = "/var/log/dasos/sense/" + vid + "/" + prefix + log_p
+
+# DATAFRAME: Pulse Log. Read, Write, Close.
+pulse = pd.read_csv(log_s)
+
 # TODO: Replace "15" with argument PULSE
+#
+# DATAFRAME: Pulse Log. Tail.
 pulse = pulse.tail(15)
-# DATAFRAME: Columns Labels
 pulse.columns = ['t', 'v']
 
 # PULSE: Variables
-# Pulse TIME
-p_time = pulse["t"].mean()
+
+p_time = pulse["t"].mean() # Pulse TIME
 print("Time =", p_time)
-# Pulse MEAN
-p_mean = pulse["v"].mean()
+
+p_mean = pulse["v"].mean() # Pulse MEAN
 print("Mean =", p_mean)
-# Pulse COUNT
-p_count = pulse["v"].count()
+
+p_count = pulse["v"].count() # Pulse COUNT
 print("Count =", p_count)
-# Pulse STD
-p_std = pulse["v"].std()
+
+p_std = pulse["v"].std() # Pulse STD
 print("STD =", p_std)
-# Pulse MIN
-p_min = pulse["v"].min()
+
+p_min = pulse["v"].min() # Pulse MIN
 print("Min =", p_min)
-# Pulse Max
-p_max = pulse["v"].max()
+
+p_max = pulse["v"].max() # Pulse Max
 print("Max =", p_max)
 
 # RECORD: CSV
 csv = f"{p_time},{p_mean},{p_std},{p_min},{p_max},{p_count}" # String Composition
 print("Record =", csv)
 
-# PULSE: Write
-#
-# TODO: Replace "vid-000" with argument VID
-#
-with open("/var/log/dasos/sense/vid-000/cron-pulse.csv", "a") as log: # Open the file in append ('a')
+# DATAFRAME: Pulse Log. Read, Write, Close.
+pulse = pd.read_csv(log_p)
+with open(pp, "a") as log: # Open the file in append ('a')
     log.write("\n") # Append Line
     log.write(csv) # Append Record
     log.close() # LOG: Close
