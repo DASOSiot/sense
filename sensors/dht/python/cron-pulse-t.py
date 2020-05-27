@@ -11,8 +11,8 @@ vid = "vid-000" # TODO: Replace with argument VID
 # LOG: Fix
 log_base = "/var/log/dasos/sense/" # Absolute Folder
 log_prefix = time.strftime("%Y-%m-") # Time Prefix
-sl = "cron-sense.csv" # SL = Sense Log
-pl = "cron-sense.csv" # PL = Pulse Log
+sl = "cron-sense.csv" # SL = Sense Log Filename
+pl = "cron-pulse.csv" # PL = Pulse Log Filename
 sp = log_base + vid + "/" + log_prefix + sl # SP = Sense Path
 pp = log_base + vid + "/" + log_prefix + pl # PP = Pulse Path
 
