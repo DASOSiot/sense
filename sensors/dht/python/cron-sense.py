@@ -10,18 +10,18 @@ import adafruit_dht
 #print(f"Name of the script      : {sys.argv[0]=}")
 #print(f"Arguments of the script : {sys.argv[1:]=}")
 
-# BOARD >> TODO: Arguments (Model + Port)
-dhtDevice = adafruit_dht.DHT22(board.D5)
+# BOARD
+dhtDevice = adafruit_dht.DHT22(board.D5) # TODO: Arguments (Model + Port)
+
+# Time (UNIX MS)
+t = time.time()
+print("Time =", t)
 
 # BOARD: Values
 v_temp = dhtDevice.temperature
 v_humi = dhtDevice.humidity
 print("Temperature =", v_temp, "°C")
-print("Value =", v_humi, "%RH")
-
-# Time (UNIX MS)
-t = time.time()
-print("Time =", t)
+print("Humidity =", v_humi, "%RH")
 
 # LOG: Fix, Global
 pre = time.strftime("%Y-%m-")
@@ -41,7 +41,7 @@ print ("Path =", path_h)
 csv_temp = f"{t},{v_temp}"
 print("Temperature Record =", csv_temp)
 
-# SENSE: Write Temperature CSV Record
+# SENSE: Write CSV Record
 with open(path_t, "a") as log:
     log.write("\n")
     log.write(csv_temp)
