@@ -4,6 +4,8 @@
 import pandas as pd
 
 # DATAFRAME: Read File
+# TODO: Replace VID with Argument
+#df = pd.read_csv("/var/log/dasos/sense/(VID)/cron-sense.csv")
 df = pd.read_csv("/var/log/dasos/sense/vid-001/cron-sense.csv")
 # DATAFRAME: Tail Data Set
 pulse = df.tail(15)
