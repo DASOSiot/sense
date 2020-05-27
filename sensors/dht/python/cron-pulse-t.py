@@ -2,17 +2,18 @@
 
 # IMPORT: Dependencies
 import pandas as pd
-from io import StringIO
 
 # DATAFRAME: Read File
-# TODO: Replace VID with Argument
-#df = pd.read_csv("/var/log/dasos/sense/(VID)/cron-sense.csv")
-# Whit CSV headers
-#df = pd.read_csv("/var/log/dasos/sense/vid-000/cron-sense.csv")
-# Without CSV Headers
-df = pd.read_csv(StringIO("/var/log/dasos/sense/vid-000/cron-sense.csv"), delim_whitespace=True, header=None, names=["t", "v"])
-# DATAFRAME: Tail Data Set
-pulse = df.tail(15)
+#
+# TODO: Replace "vid-000" with argument VID
+#
+pulse = pd.read_csv("/var/log/dasos/sense/vid-000/cron-sense.csv")
+
+# DATAFRAME: Tail Data
+# TODO: Replace "15" with argument PULSE
+pulse = pulse.tail(15)
+# DATAFRAME: Columns Labels
+pulse.columns = ['t', 'v']
 
 # PULSE: Variables
 # Pulse TIME
@@ -39,6 +40,9 @@ csv = f"{p_time},{p_mean},{p_std},{p_min},{p_max},{p_count}" # String Compositio
 print("Record =", csv)
 
 # PULSE: Write
+#
+# TODO: Replace "vid-000" with argument VID
+#
 with open("/var/log/dasos/sense/vid-000/cron-pulse.csv", "a") as log: # Open the file in append ('a')
     log.write("\n") # Append Line
     log.write(csv) # Append Record
