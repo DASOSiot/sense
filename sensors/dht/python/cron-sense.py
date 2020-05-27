@@ -24,11 +24,11 @@ print("Value =", v_humi, "%RH")
 
 # RECORD: Temperature CSV
 csv_temp = f"{t},{v_temp}" # String Composition
-print("Record =", csv_temp)
+print("Temperature Record =", csv_temp)
 
 # RECORD: Humidity CSV
 csv_humi = f"{t},{v_humi}" # String Composition
-print("Record =", csv_humi)
+print("Humidity Record =", csv_humi)
 
 # SENSE: Write Temperature CSV
 with open("/var/log/dasos/sense/vid-000/cron-sense.csv", "a") as log: # Open the file in append ('a')
