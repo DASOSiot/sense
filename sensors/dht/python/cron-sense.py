@@ -18,7 +18,7 @@ t = time.time()
 print("Time =", t)
 # Values from Device
 v_temp = dhtDevice.temperature # Print the values to the serial port
-v_humi = dhtDevice.temperature # Print the values to the serial port
+v_humi = dhtDevice.humidity # Print the values to the serial port
 print("Temperature =", v_temp, "°C")
 print("Value =", v_humi, "%RH")
 
