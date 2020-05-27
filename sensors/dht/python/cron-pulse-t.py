@@ -2,11 +2,15 @@
 
 # IMPORT: Dependencies
 import pandas as pd
+from io import StringIO
 
 # DATAFRAME: Read File
 # TODO: Replace VID with Argument
 #df = pd.read_csv("/var/log/dasos/sense/(VID)/cron-sense.csv")
-df = pd.read_csv("/var/log/dasos/sense/vid-000/cron-sense.csv")
+# Whit CSV headers
+#df = pd.read_csv("/var/log/dasos/sense/vid-000/cron-sense.csv")
+# Without CSV Headers
+df = pd.read_csv(StringIO("/var/log/dasos/sense/vid-000/cron-sense.csv"), delim_whitespace=True, header=None, names=["Time", "Value"])
 # DATAFRAME: Tail Data Set
 pulse = df.tail(15)
 
