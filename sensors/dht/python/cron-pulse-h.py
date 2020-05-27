@@ -6,18 +6,14 @@ import time
 import pandas as pd
 
 # ARGUMENTS
-vid = "vid-001" # TODO: Replace "vid-000" with argument VID
+vid = "vid-001" # TODO: Replace with argument VID
 
-# LOG: Fix, Global
+# LOG: Fix
 log_base = "/var/log/dasos/sense/" # Absolute Folder
 log_prefix = time.strftime("%Y-%m-") # Time Prefix
 sl = "cron-sense.csv" # SL = Sense Log
 pl = "cron-sense.csv" # PL = Pulse Log
-
-# LOG: Fix, Sense
 sp = log_base + vid + "/" + log_prefix + sl # SP = Sense Path
-
-# LOG: Fix, Pulse
 pp = log_base + vid + "/" + log_prefix + pl # PP = Pulse Path
 
 # DATAFRAME: Pulse Log. Read, Write, Close.
