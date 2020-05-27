@@ -45,7 +45,7 @@ print("Humidity Record =", csv_humi)
 vid = "vid-001"
 file = "cron-sense.csv"
 pre = time.strftime("%Y%m%d")
-path = ("/var/log/dasos/sense/,vid/,pre,file")
+path = "/var/log/dasos/sense" + vid + "/" + pre + file
 print path
 
 #LOG: OPEN
