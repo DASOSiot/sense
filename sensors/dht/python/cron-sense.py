@@ -41,9 +41,17 @@ print("Humidity Record =", csv_humi)
 #
 # TODO: Replace "vid-001" with argument VID
 #
+# LOG: Fix
+vid = "vid-001"
+file = "cron-sense.csv"
+pre = time.strftime("%Y%m%d")
+path = ("/var/log/dasos/sense/,vid/,pre,file")
+print path
+
+#LOG: OPEN
 with open("/var/log/dasos/sense/vid-001/cron-sense.csv", "a") as log: # Open the file in append ('a')
-    log.write("\n") # Append Line
-    log.write(csv_humi) # Append Record
+    log.write("\n") # LOG: Write. Append Line
+    log.write(csv_humi) # LOG: Write. Append Record
     log.close() # LOG: Close
 
 # SENSE: Ready
