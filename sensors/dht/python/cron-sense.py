@@ -44,12 +44,12 @@ print("Humidity Record =", csv_humi)
 # LOG: Fix
 vid = "vid-001"
 file = "cron-sense.csv"
-pre = time.strftime("%Y%m%d")
-path = "/var/log/dasos/sense" + vid + "/" + pre + file
-print path
+pre = time.strftime("%Y-%m-%d")
+path = "/var/log/dasos/sense/" + vid + "/" + pre + file
+print (path)
 
 #LOG: OPEN
-with open("/var/log/dasos/sense/vid-001/cron-sense.csv", "a") as log: # Open the file in append ('a')
+with open(path, "a") as log: # Open the file in append ('a')
     log.write("\n") # LOG: Write. Append Line
     log.write(csv_humi) # LOG: Write. Append Record
     log.close() # LOG: Close
