@@ -10,7 +10,7 @@ from io import StringIO
 # Whit CSV headers
 #df = pd.read_csv("/var/log/dasos/sense/vid-000/cron-sense.csv")
 # Without CSV Headers
-df = pd.read_csv(StringIO("/var/log/dasos/sense/vid-000/cron-sense.csv"), delim_whitespace=True, header=None, names=["Time", "Value"])
+df = pd.read_csv(StringIO("/var/log/dasos/sense/vid-000/cron-sense.csv"), delim_whitespace=True, header=None, names=["t", "v"])
 # DATAFRAME: Tail Data Set
 pulse = df.tail(15)
 
