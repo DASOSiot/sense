@@ -38,6 +38,9 @@ pulse.columns = ['t', 'v']
 p_time = pulse["t"].mean()
 print("TIME (unix ms) =", p_time)
 
+p_count = pulse["v"].count()
+print("COUNT (records) =", p_count)
+
 p_mean = pulse["v"].mean()
 print("MEAN =", p_mean)
 
@@ -49,9 +52,6 @@ print("MIN =", p_min)
 
 p_max = pulse["v"].max()
 print("MAX =", p_max)
-
-p_count = pulse["v"].count()
-print("COUNT (records) =", p_count)
 
 # PULSE: CSV Record
 csv = f"{p_time},{p_mean},{p_std},{p_min},{p_max},{p_count}"
