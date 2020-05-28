@@ -7,54 +7,69 @@ import board
 import adafruit_dht
 
 # ARGUMENTS
-#print(f"Name of the script      : {sys.argv[0]=}")
-#print(f"Arguments of the script : {sys.argv[1:]=}")
+# 0 = Script
+# 1 = Board Pin (Expects a Digital Port. Example: "D5")
+# 2 = Component Variation (Expects "DHT11" or "DHT22")
+# 3 = Temperature Variale ID (Expects Forest Platform VID)
+# 4 = Cycle (Expects cycle expressed in minutes)
 
-# BOARD
-dhtDevice = adafruit_dht.DHT22(board.D5) # TODO: Arguments (Model + Port)
+# ARGUMENTS: Definitions
+script = sys.argv[0]
+print ("SCRIPT =",script)
+board_pin = sys.argv[1]
+print ("Board Connection =",board_pin)
+board_component = sys.argv[2]
+print ("Board Component =",board_component)
+temp_vid = sys.argv[3]
+print ("Temperature VID =",temp_vid)
+humi_vid = sys.argv[4]
+print ("Humidity VID =",humi_vid)
+
+# BOARD & Component
+device = adafruit_dht.DHT22(board.D5)
 
 # Time (UNIX MS)
 t = time.time()
 print("Time =", t)
 
 # BOARD: Values
-v_temp = dhtDevice.temperature
-v_humi = dhtDevice.humidity
-print("Temperature =", v_temp, "°C")
-print("Humidity =", v_humi, "%RH")
+temp_value = device.temperature
+humi_value = device.humidity
+print("Temperature =", temp_value, "°C")
+print("Humidity =", humi_value, "%RH")
 
 # LOG: Fix, Global
 pre = time.strftime("%Y-%m-")
 file = "cron-sense.csv"
 
 # LOG: Fix, Temperature (VID)
-vid_t = "vid-000"
-path_t = "/var/log/dasos/sense/" + vid_t + "/" + pre + file
-print ("Path =", path_t)
+temp_vid = sys.argv[3]
+temp_path = "/var/log/dasos/sense/" + temp_vid + "/" + pre + file
+print ("Path =", temp_path)
 
 # LOG: Fix, Humidity (VID)
-vid_h = "vid-001"
-path_h = "/var/log/dasos/sense/" + vid_h + "/" + pre + file
-print ("Path =", path_h)
+humi_vid = sys.argv[4]
+humi_path = "/var/log/dasos/sense/" + humi_vid + "/" + pre + file
+print ("Path =", humi_path)
 
 # RECORD: Temperature CSV
-csv_temp = f"{t},{v_temp}"
-print("Temperature Record =", csv_temp)
+temp_csv = f"{t},{temp_value}"
+print("Temperature Record =", temp_csv)
 
 # SENSE: Write CSV Record
-with open(path_t, "a") as log:
+with open(temp_path, "a") as log:
     log.write("\n")
-    log.write(csv_temp)
+    log.write(temp_csv)
     log.close()
 
 # RECORD: Humidity CSV
-csv_humi = f"{t},{v_humi}"
-print("Humidity Record =", csv_humi)
+humi_csv = f"{t},{humi_value}"
+print("Humidity Record =", humi_csv)
 
 # SENSE: Write Humidity CSV Record
-with open(path_h, "a") as log:
+with open(humi_path, "a") as log:
     log.write("\n")
-    log.write(csv_humi)
+    log.write(humi_csv)
     log.close()
 
 # SENSE: Ready
