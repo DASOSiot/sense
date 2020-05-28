@@ -9,15 +9,14 @@ import pandas as pd
 # 0 = Script
 # 1 = Variale ID (VID)
 # 2 = Cycle (minutes)
-print(f"Script: {sys.argv[0]}")
-print(f"Vid: {sys.argv[1]}")
-print(f"Cycle: {sys.argv[2]}")
+
+#print(f"SCRIPT = {sys.argv[0]} (filename)")
 
 # ARGUMENTS
 script = sys.argv[0]
-print ("SCRIPT =",script)
+print ("SCRIPT =",script,"(filename)")
 vid = sys.argv[1]
-print ("VID =",vid)
+print ("VARIABLE =",vid,"(id)")
 cycle = int(sys.argv[2])
 print ("CYCLE =",cycle,"minutes")
 

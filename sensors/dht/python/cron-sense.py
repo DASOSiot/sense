@@ -26,6 +26,9 @@ humi_vid = sys.argv[4]
 print ("Humidity VID =",humi_vid)
 
 # BOARD & Component
+#
+# TODO: ARGUMENTS
+#
 device = adafruit_dht.DHT22(board.D5)
 
 # Time (UNIX MS)
@@ -45,26 +48,26 @@ file = "cron-sense.csv"
 # LOG: Fix, Temperature (VID)
 temp_vid = sys.argv[3]
 temp_path = "/var/log/dasos/sense/" + temp_vid + "/" + pre + file
-print ("Path =", temp_path)
+print ("Temperature Log Path =", temp_path)
 
 # LOG: Fix, Humidity (VID)
 humi_vid = sys.argv[4]
 humi_path = "/var/log/dasos/sense/" + humi_vid + "/" + pre + file
-print ("Path =", humi_path)
+print ("Humidity Log Path =", humi_path)
 
 # RECORD: Temperature CSV
 temp_csv = f"{t},{temp_value}"
 print("Temperature Record =", temp_csv)
 
-# SENSE: Write CSV Record
+# RECORD: Humidity CSV
+humi_csv = f"{t},{humi_value}"
+print("Humidity Record =", humi_csv)
+
+# SENSE: Write Temperature CSV Record
 with open(temp_path, "a") as log:
     log.write("\n")
     log.write(temp_csv)
     log.close()
-
-# RECORD: Humidity CSV
-humi_csv = f"{t},{humi_value}"
-print("Humidity Record =", humi_csv)
 
 # SENSE: Write Humidity CSV Record
 with open(humi_path, "a") as log:
