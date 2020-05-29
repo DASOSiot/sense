@@ -14,10 +14,10 @@ print (f"CYCLE (minutes): {sys.argv[2]}")
 cycle = int(sys.argv[2])
 
 # LOG: Variables
-log_prefix = time.strftime("%Y-%m") # Time Prefix
-sp = f"/var/log/dasos/sense/{sys.argv[1]}/{log_prefix}-cron-sense.csv" # SP = Sense Path
+filename = time.strftime("%Y-%m") # Time Prefix
+sp = f"/var/log/dasos/sense/{sys.argv[1]}/{filename}.csv" # SP = Sense Path
 print ("SENSE (path) =",sp)
-pp = f"/var/log/dasos/sense/{sys.argv[1]}/{log_prefix}-cron-pulse-{sys.argv[2]}.csv" # # PP = Pulse Path
+pp = f"/var/log/dasos/pulse/{sys.argv[1]}/{filename}-{sys.argv[2]}.csv" # # PP = Pulse Path
 print ("PULSE (path) =",pp)
 
 # DATAFRAME: Tail Pulse Log.
