@@ -6,9 +6,9 @@ import time
 import pandas as pd
 
 # ARGUMENTS: Definitions
-print (f"SCRIPT (file): {sys.argv[0]}")
-print (f"VARIABLE (vid): {sys.argv[1]}")
-print (f"CYCLE (minutes): {sys.argv[2]}")
+print (f"SCRIPT (file) = {sys.argv[0]}")
+print (f"VARIABLE (vid) = {sys.argv[1]}")
+print (f"CYCLE (minutes) = {sys.argv[2]}")
 
 # ARGUMENTS: Transformations
 cycle = int(sys.argv[2])
