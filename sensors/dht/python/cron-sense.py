@@ -30,16 +30,21 @@ print ("Humidity VID =",humi_vid)
 # TODO: ARGUMENTS
 #
 device = adafruit_dht.DHT22(board.D5)
+#
+#device_str = f"device = adafruit_dht.{sys.argv[2]}(board.{sys.argv[1]})"
+#exec(device_str)
+#print("DEVICE STR =", device_str)
+#device = exec(device_str)
 
 # Time (UNIX MS)
 t = time.time()
-print("Time =", t)
+print("Time (unix ms) =", t)
 
 # BOARD: Values
 temp_value = device.temperature
 humi_value = device.humidity
-print("Temperature =", temp_value, "°C")
-print("Humidity =", humi_value, "%RH")
+print("Temperature (°C) =", temp_value)
+print("Humidity (%RH) =", humi_value)
 
 # LOG: Fix, Global
 pre = time.strftime("%Y-%m-")
