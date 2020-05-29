@@ -8,22 +8,17 @@ import adafruit_dht
 
 # ARGUMENTS
 # 0 = Script
-# 1 = Board Pin (Expects a Digital Port. Example: "D5")
+# 1 = Board Port (Expects a Digital Port. Example: "D5")
 # 2 = Component Variation (Expects "DHT11" or "DHT22")
 # 3 = Temperature Variale ID (Expects Forest Platform VID)
 # 4 = Cycle (Expects cycle expressed in minutes)
 
 # ARGUMENTS: Definitions
-script = sys.argv[0]
-print ("SCRIPT =",script)
-board_pin = sys.argv[1]
-print ("Board Connection =",board_pin)
-board_component = sys.argv[2]
-print ("Board Component =",board_component)
-temp_vid = sys.argv[3]
-print ("Temperature VID =",temp_vid)
-humi_vid = sys.argv[4]
-print ("Humidity VID =",humi_vid)
+print (f"SCRIPT (filename) = {sys.argv[0]}")
+print (f"CONNECTION (port) = {sys.argv[1]}")
+print (f"COMPONENT (variation) = {sys.argv[2]}")
+print (f"TEMPERATURE (vid) = {sys.argv[3]}")
+print (f"HUMIDITY (vid) = {sys.argv[4]}")
 
 # BOARD & Component
 #
@@ -38,13 +33,13 @@ device = adafruit_dht.DHT22(board.D5)
 
 # Time (UNIX MS)
 t = time.time()
-print("Time (unix ms) =", t)
+print (f"TIME (unix ms) = {t}")
 
 # BOARD: Values
 temp_value = device.temperature
+print (f"TEMPERATURE (°C) = {temp_value}")
 humi_value = device.humidity
-print("Temperature (°C) =", temp_value)
-print("Humidity (%RH) =", humi_value)
+print (f"HUMIDITY (%RH) = {humi_value}")
 
 # LOG: Variables
 filename = time.strftime("%Y-%m") # Time Prefix
@@ -52,16 +47,16 @@ filename = time.strftime("%Y-%m") # Time Prefix
 # LOG: Fix, Temperature (VID)
 temp_path = f"/var/log/dasos/sense/{sys.argv[3]}/{filename}.csv" # SP = Sense Path
 humi_path = f"/var/log/dasos/sense/{sys.argv[4]}/{filename}.csv" # SP = Sense Path
-print ("Temperature Log Path =", temp_path)
-print ("Humidity Log Path =", humi_path)
+print ("TEMP LOG PATH =", temp_path)
+print ("HUMI LOG PATH =", humi_path)
 
 # RECORD: Temperature CSV
 temp_csv = f"{t},{temp_value}"
-print("Temperature Record =", temp_csv)
+print("TEMP RECORD (csv) =", temp_csv)
 
 # RECORD: Humidity CSV
 humi_csv = f"{t},{humi_value}"
-print("Humidity Record =", humi_csv)
+print("HUMI RECORD (csv) =", humi_csv)
 
 # SENSE: Write Temperature CSV Record
 with open(temp_path, "a") as log:
