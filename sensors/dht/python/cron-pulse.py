@@ -5,34 +5,29 @@ import sys
 import time
 import pandas as pd
 
-# ARGUMENTS
-# 0 = Script
-# 1 = Variale ID (VID)
-# 2 = Cycle (minutes)
+# ARGUMENTS: Definitions
+print (f"SCRIPT (file): {sys.argv[0]}")
+print (f"VARIABLE (vid): {sys.argv[1]}")
+print (f"CYCLE (minutes): {sys.argv[2]}")
 
-#print(f"SCRIPT = {sys.argv[0]} (filename)")
-
-# ARGUMENTS
-script = sys.argv[0]
-print ("SCRIPT (filename) =",script)
-vid = sys.argv[1]
-print ("VARIABLE (vid) =",vid)
+# ARGUMENTS: Transformations
 cycle = int(sys.argv[2])
-print ("CYCLE (minutes) =",cycle)
 
-# LOG: Fix
-log_prefix = time.strftime("%Y-%m-") # Time Prefix
-sp = "/var/log/dasos/sense/" + vid + "/" + log_prefix + "cron-sense.csv" # SP = Sense Path
-pp = "/var/log/dasos/sense/" + vid + "/" + log_prefix + "cron-pulse-" + sys.argv[2] + ".csv" # PP = Pulse Path
+# LOG: Variables
+log_prefix = time.strftime("%Y-%m") # Time Prefix
+sp = f"/var/log/dasos/sense/{sys.argv[1]}/{log_prefix}-cron-sense.csv" # SP = Sense Path
 print ("SENSE (path) =",sp)
+pp = f"/var/log/dasos/sense/{sys.argv[1]}/{log_prefix}-cron-pulse-{sys.argv[2]}.csv" # # PP = Pulse Path
 print ("PULSE (path) =",pp)
 
-# DATAFRAME: Pulse Log. Read, Write, Close.
+# DATAFRAME: Tail Pulse Log.
 pulse = pd.read_csv(sp)
-
-# DATAFRAME: Pulse Log. Tail.
 pulse = pulse.tail(n = cycle)
+##
+# TODO
 pulse.columns = ['t', 'v']
+# TODO
+##
 
 # PULSE: Variables
 p_time = pulse["t"].mean()
