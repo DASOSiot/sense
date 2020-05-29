@@ -46,18 +46,13 @@ humi_value = device.humidity
 print("Temperature (°C) =", temp_value)
 print("Humidity (%RH) =", humi_value)
 
-# LOG: Fix, Global
-pre = time.strftime("%Y-%m-")
-file = "cron-sense.csv"
+# LOG: Variables
+filename = time.strftime("%Y-%m") # Time Prefix
 
 # LOG: Fix, Temperature (VID)
-temp_vid = sys.argv[3]
-temp_path = "/var/log/dasos/sense/" + temp_vid + "/" + pre + file
+temp_path = f"/var/log/dasos/sense/{sys.argv[3]}/{filename}.csv" # SP = Sense Path
+humi_path = f"/var/log/dasos/sense/{sys.argv[4]}/{filename}.csv" # SP = Sense Path
 print ("Temperature Log Path =", temp_path)
-
-# LOG: Fix, Humidity (VID)
-humi_vid = sys.argv[4]
-humi_path = "/var/log/dasos/sense/" + humi_vid + "/" + pre + file
 print ("Humidity Log Path =", humi_path)
 
 # RECORD: Temperature CSV
